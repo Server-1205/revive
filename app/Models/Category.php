@@ -18,6 +18,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category query()
  * @mixin \Eloquent
+ * @property int $parent_id
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereUpdatedAt($value)
  */
 
 class Category extends Model

@@ -23,7 +23,7 @@
     <!-- Main content -->
 
     <section class="content">
-        <form action="{{ route('admin.posts.store') }}" method="post" class="">
+        <form action="{{ route('admin.posts.store') }}" enctype="multipart/form-data" method="post"  class="">
             @csrf
             <div class="row">
                 <div class="col-md-8">
