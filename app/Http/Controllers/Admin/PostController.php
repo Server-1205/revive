@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class PostController extends Controller
 {
@@ -14,17 +20,18 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
-        //
+        $categoryList = Category::all();
+        return view('blog.admin.posts.create',compact('categoryList'));
     }
 
     /**
@@ -32,10 +39,22 @@ class PostController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws ValidationException
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+        $this->validate($request, [
+            'title' => 'required|unique:posts,title|string|max:100|min:3',
+            'slug' => '|unique:posts,slug|max:100|min:3',
+            'file' => 'mimes:jpg,jpeg,png',
+        ]);
+
+        if (empty($data['slug'])){
+            $data['slug'] = Str::slug($data['title']);
+        }
+
+        $res = Post
     }
 
     /**
