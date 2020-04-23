@@ -129,7 +129,7 @@ class PostController extends Controller
             $image = $request->file('image')->store('images','public');
         }
 
-        $published = $request['is_published'] ? Carbon::now() : null;
+        $published = $request['is_published'] ? Carbon::now() : $post->published_at;
 
         //dd($published);
 
@@ -163,6 +163,7 @@ class PostController extends Controller
     public function publish(Post $post)
     {
         $post->is_published = !$post->is_published;
+        $post->published_at = $post->published_at ?? Carbon::now();
         $post->save();
         return redirect()->route('admin.posts.index');
     }
