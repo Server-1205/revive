@@ -35,18 +35,21 @@
                                 <div class="form-group">
                                     <label for="title">Заголовок</label>
                                     <input type="text" class="form-control" id="title"
+                                           value="{{ old('title') }}"
                                            name="title"
                                            placeholder="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="slug">Слаг</label>
-                                    <input type="text" class="form-control" id="slug"
-                                           name="slug"
-                                           placeholder="">
+                                    <label for="desc">Описание</label>
+                                    <textarea class="form-control" name="description" rows="3" placeholder="Enter ..."> {{ old('description') }}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="desc">Описание</label>
-                                    <textarea class="form-control" rows="10" placeholder="Enter ..."></textarea>
+                                    <label for="parent">Описание</label>
+
+                                    <select id="parent" name="parent_id" class="form-control">
+                                        <option value="0"> --категории--</option>
+                                        @include('blog.admin.categories._categories')
+                                    </select>
                                 </div>
                             </div>
                             <!-- /.card-body -->

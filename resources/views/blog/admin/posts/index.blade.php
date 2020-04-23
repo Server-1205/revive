@@ -24,7 +24,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Статьи</h3>
+                <h3 class="card-title">Список статей</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
@@ -51,7 +51,7 @@
                                 Категория
                             </th>
                             <th style="width: 10%">
-                                Категория
+                                Превью
                             </th>
 
                             <th style="width: 15%">
@@ -59,21 +59,7 @@
                             </th>
 
                             <th style="width: 20%" class="pr-0 mr-3">
-                                <a class="btn btn-primary btn-sm" href="">
-                                    <i class="fas fa-folder">
-                                    </i>
-                                    View
-                                </a>
-                                <a class="btn btn-info btn-sm" href="#">
-                                    <i class="fas fa-pencil-alt">
-                                    </i>
-                                    Edit
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="#">
-                                    <i class="fas fa-trash">
-                                    </i>
-                                    Delete
-                                </a>
+                                Действие
                             </th>
                         </tr>
                         </thead>
@@ -96,7 +82,7 @@
                                 </td>
                                 <td>
                                     <a>
-                                        {{ $post->category_id }}
+                                        {{ $post->categories->title }}
                                     </a>
                                     <br/>
                                     <small>
@@ -104,22 +90,29 @@
                                     </small>
                                 </td>
                                 <td>
-
+                                    <img src="{{$path}}{{$post->image}}" width="50" alt="">
                                 </td>
 
                                 <td>
+                                    <a href="{{ route('admin.post.publish', $post) }}">
+                                        @if ($post->is_published)
+                                            <span class="badge badge-success">Опубликован</span>
+                                        @else
+                                            <span class="badge badge-danger">Черновик</span>
+                                        @endif
+                                    </a>
 
                                 </td>
                                 <td class="form-inline">
                                     <a class="btn btn-primary btn-sm mr-1"
-                                       href="{{ route('admin.posts.show',$post->id) }}">
+                                       href="{{ route('admin.posts.show', $post) }}">
                                         <i class="fas fa-folder">
                                         </i>
                                         View
                                     </a>
 
                                     <form class="" action="{{ route('admin.posts.edit', $post) }}"
-                                          method="post">
+                                          method="">
                                         <button type="submit" class="btn btn-info btn-sm mr-1">
 
                                             <i class="fas fa-pencil-alt">
@@ -129,7 +122,7 @@
                                         </button>
                                     </form>
                                     <form class="inline-flex"
-                                          action="{{ route('admin.posts.destroy',$post->id) }}" method="post">
+                                          action="{{ route('admin.posts.destroy',$post) }}" method="post">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm mr-1">
@@ -148,8 +141,15 @@
 
             </div>
             <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
 
+        </div>
+        <div class="row justify-content-center">
+            @if ($posts->total() > $posts->count())
+                {{ $posts->links() }}
+            @endif
+        </div>
+
+
+    <!-- /.card -->
     </section>
 @stop

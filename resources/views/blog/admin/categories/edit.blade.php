@@ -24,18 +24,20 @@
                 <div class="col-md-8">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                    {{--                        <div class="card-header">--}}
-                    {{--                            <h3 class="card-title"></h3>--}}
-                    {{--                        </div>--}}
-                    <!-- /.card-header -->
+                        <div class="card-header">
+                            <h1 class="card-title"> </h1>
+                        </div>
+                        <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="{{ route('admin.categories.store') }}" role="form">
+                        <form method="POST" action="{{ route('admin.categories.update', $category->id) }}" role="form">
+                            @method('PUT')
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="title">Заголовок</label>
                                     <input type="text" class="form-control" id="title"
                                            name="title"
+                                           value="{{ $category->title ?? '' }}"
                                            placeholder="">
                                 </div>
                                 <div class="form-group">
@@ -46,7 +48,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="desc">Описание</label>
-                                    <textarea class="form-control" rows="10" placeholder="Enter ..."></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ...">{{ $category->description }}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="parent">Родительская категория</label>
+                                    <select class="form-control" id="parent" name="parent_id">
+                                        <option value="0" selected>-- Без категории --</option>
+                                            @include('blog.admin.categories._categories')
+                                    </select>
                                 </div>
                             </div>
                             <!-- /.card-body -->

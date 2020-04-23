@@ -14,4 +14,5 @@ Route::group(
         Route::get('/','HomeController@index')->name('home');
         Route::resource('categories','CategoryController');
         Route::resource('posts','PostController');
+        Route::get('/posts/publish/{post}','PostController@publish')->name('post.publish');
     });

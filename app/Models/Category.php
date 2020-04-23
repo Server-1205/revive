@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Category
@@ -32,5 +34,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['slug','title','description'];
+    protected $fillable = ['slug','title','description','parent_id'];
+
+    public function children(): HasMany
+    {
+        return $this->hasMany(self::class,'parent_id','id');
+    }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(self::class,'parent_id','id');
+    }
+
+    public function getParentTitleAttribute()
+    {
+        return $this->parent->title ?? ( $this->is_parent() ? '-' : '???');
+    }
+
+    public function is_parent(): int
+    {
+        return $this->parent_id === 0;
+    }
 }

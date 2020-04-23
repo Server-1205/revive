@@ -28,7 +28,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('blog.admin.categories.create');
+        $categories = Category::with('children')->where('parent_id', 0)->get();
+        //dd($categories);
+        return view('blog.admin.categories.create', ['categories' => $categories, 'delimiter' => '']);
     }
 
     /**
@@ -38,12 +40,12 @@ class CategoryController extends Controller
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
 
         $data = $request->input();
         $this->validate($request,[
-            'title' => 'string|max:50',
+            'title' => 'string|max:50|unique:categories,title',
             'slug'  => 'unique:categories,slug|max:40|',
             'description' => 'string'
         ]);
@@ -83,11 +85,14 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param $id
-     * @return Response
+     * @return View
      */
-    public function edit($id): ?Response
+    public function edit($id):View
     {
-        dd(__METHOD__);
+        $delimiter = '';
+        $category = Category::findOrFail($id);
+        $categories = Category::with('children')->where('parent_id', 0)->get();
+        return view('blog.admin.categories.edit',compact('category','categories','delimiter'));
     }
 
     /**
@@ -95,24 +100,29 @@ class CategoryController extends Controller
      *
      * @param Request $request
      * @param $id
-     * @return Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id): ?Response
+    public function update(Request $request, $id): RedirectResponse
     {
-        //
+        $category = Category::find($id);
+
+        $res = $category->update($request->all());
+
+        return redirect()->route('admin.categories.edit',$category);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param $id
+     * @param Category $category
      * @return RedirectResponse
+     * @throws \Exception
      */
-    public function destroy($id): RedirectResponse
+    public function destroy(Category $category): RedirectResponse
     {
-        $res = Category::destroy($id);
+        $res = $category->delete();
         if($res){
-            return back()->with(['success' => "Запись с id {$id} удалена"]);
+            return back()->with(['success' => "Запись с id {$category->id} удалена"]);
         }
 
         return back()->withErrors(['msg' => 'Ошибка удаления']);

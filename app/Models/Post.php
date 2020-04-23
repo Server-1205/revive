@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Post
@@ -47,6 +48,18 @@ class Post extends Model
         'detail_text',
         'image',
         'category_id',
-        'author_id'
+        'author_id',
+        'is_published',
+        'published_at'
     ];
+
+    protected $dates = ['published_at'];
+
+    /**
+     * @return BelongsTo
+     */
+    public function categories(): BelongsTo
+    {
+        return $this->belongsTo(Category::class,'category_id','id');
+    }
 }

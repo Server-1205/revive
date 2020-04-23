@@ -44,7 +44,7 @@
                                 #
                             </th>
                             <th style="width: 20%">
-                                 Категория
+                                Категория
                             </th>
                             <th style="width: 30%">
                                 Родитель
@@ -52,24 +52,13 @@
                             <th style="width: 30%">
 
                             </th>
-                            <th style="width: 20%">
-                                <a class="btn btn-info btn-sm" href="#">
-                                    <i class="fas fa-pencil-alt">
-                                    </i>
-                                    Edit
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="#">
-                                    <i class="fas fa-trash">
-                                    </i>
-                                    Delete
-                                </a>
+                            <th class="text-rigth" style="width: 20%">
+                                Действие
                             </th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($categories as $category)
-
-
                             <tr>
                                 <td>
                                     {{ $category->id }}
@@ -85,7 +74,7 @@
                                 </td>
                                 <td>
                                     <a>
-                                        {{ $category->parent_id }}
+                                        {{ $category->parentTitle }}
                                     </a>
                                     <br/>
                                     <small>
@@ -106,18 +95,13 @@
                                     {{--                                        </i>--}}
                                     {{--                                        Edit--}}
                                     {{--                                    </a>--}}
-                                    <form class="" action="{{ route('admin.categories.destroy',$category->id) }}"
-                                          method="post">
-                                        <button type="submit" class="btn btn-info btn-sm mr-1">
-
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-
-                                        </button>
-                                    </form>
+                                    <a class="btn btn-info btn-sm" href="{{ route('admin.categories.edit',$category->id) }}">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
+                                    </a>
                                     <form class="inline-flex"
-                                          action="{{ route('admin.categories.destroy',$category->id) }}" method="post">
+                                          action="{{ route('admin.categories.destroy',$category) }}" method="post">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm mr-1">

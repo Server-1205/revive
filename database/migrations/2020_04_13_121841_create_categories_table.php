@@ -9,11 +9,12 @@ class CreateCategoriesTable extends Migration
     {
         \Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('parent_id')->unsigned()->default(1);
+            $table->bigInteger('parent_id')->unsigned()->default(0);
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('slug')->unique()->index();
             $table->softDeletes();
+//            $table->foreign('parent_id')->references('id')->on('categories');
 
 
             $table->timestamps();

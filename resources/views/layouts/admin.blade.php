@@ -57,7 +57,6 @@
                 </div>
             </div>
         </form>
-
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
@@ -230,24 +229,26 @@
 
                                 <ul class="nav nav-treeview">
 
+
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.posts.index') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Список статей </p>
+                                        </a>
+                                    </li>
                                     <li class="nav-item">
                                         <a href="{{ route('admin.posts.create') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Добавить</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="./index2.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Редактировать </p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="./index3.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Удалить</p>
-                                        </a>
-                                    </li>
+{{--                                    {{ dd($post) }}--}}
+{{--                                    <li class="nav-item">--}}
+{{--                                        <a href="{{ route('admin.posts.edit', $post->id) }}" class="nav-link">--}}
+{{--                                            <i class="far fa-circle nav-icon"></i>--}}
+{{--                                            <p>Редактировать статью</p>--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
                                 </ul>
 
                             </li>
@@ -285,7 +286,10 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Alert!</h5>
                         <ul>
-                            <li>{{ $errors->first() }}</li>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+
                         </ul>
                     </div>
                 </div>
