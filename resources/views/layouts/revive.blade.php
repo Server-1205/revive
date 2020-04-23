@@ -19,22 +19,22 @@
     <!-- Site Title -->
     <title>Revive</title>
 
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Playfair+Display:700,700i"
-        rel="stylesheet"
-    />
+{{--    <link--}}
+{{--        href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Playfair+Display:700,700i"--}}
+{{--        rel="stylesheet"--}}
+{{--    />--}}
     <!--
 			CSS
 			============================================= -->
-    <link rel="stylesheet" href="{{ asset('lte') }}/{{ asset('lte') }}/{{asset('css/linearicons.css')}}" />
-    <link rel="stylesheet" href="{{ asset('lte') }}/{{ asset('lte') }}/{{ asset('css') }}/font-awesome.min.css" />
-    <link rel="stylesheet" href="{{ asset('lte') }}/{{ asset('lte') }}/{{ asset('css') }}/magnific-popup.css" />
-    <link rel="stylesheet" href="{{ asset('lte') }}/{{ asset('lte') }}/{{ asset('css') }}/nice-select.css" />
-    <link rel="stylesheet" href="{{ asset('lte') }}/{{ asset('lte') }}/{{ asset('css') }}/owl.carousel.css" />
-    <link rel="stylesheet" href="{{ asset('lte') }}/{{ asset('lte') }}/{{ asset('css') }}/bootstrap.css" />
-    <link rel="stylesheet" href="{{ asset('lte') }}/{{ asset('lte') }}/{{ asset('css') }}/bootstrap-datepicker.css" />
-    <link rel="stylesheet" href="{{ asset('lte') }}/{{ asset('lte') }}/{{ asset('css') }}/themify-icons.css" />
-    <link rel="stylesheet" href="{{ asset('lte') }}/{{ asset('lte') }}/{{ asset('css') }}/main.css" />
+    <link rel="stylesheet" href="{{asset('css/linearicons.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css') }}/font-awesome.min.css" />
+    <link rel="stylesheet" href="{{ asset('css') }}/magnific-popup.css" />
+    <link rel="stylesheet" href="{{ asset('css') }}/nice-select.css" />
+    <link rel="stylesheet" href="{{ asset('css') }}/owl.carousel.css" />
+    <link rel="stylesheet" href="{{ asset('css') }}/bootstrap.css" />
+    <link rel="stylesheet" href="{{ asset('css') }}/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="{{ asset('css') }}/themify-icons.css" />
+    <link rel="stylesheet" href="{{ asset('css') }}/main.css" />
 </head>
 
 <body>
@@ -193,26 +193,26 @@
 </footer>
 <!--================ End Footer Area =================-->
 
-src="{{ asset("lte") }}{{ asset('js') }}/vendor/jquery-2.2.4.min.js"></script>
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-    crossorigin="anonymous"
-></script>
-{{--src="{{ asset("lte") }}{{ asset('js') }}/vendor/bootstrap.min.js"></script>--}}
-src="{{ asset("lte") }}{{ asset('js') }}/owl.carousel.min.js"></script>
-src="{{ asset("lte") }}{{ asset('js') }}/jquery.sticky.js"></script>
-src="{{ asset("lte") }}{{ asset('js') }}/jquery.tabs.min.js"></script>
-src="{{ asset("lte") }}{{ asset('js') }}/parallax.min.js"></script>
-src="{{ asset("lte") }}{{ asset('js') }}/jquery.nice-select.min.js"></script>
-src="{{ asset("lte") }}{{ asset('js') }}/jquery.ajaxchimp.min.js"></script>
-src="{{ asset("lte") }}{{ asset('js') }}/jquery.magnific-popup.min.js"></script>
-<script
-    type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"
-></script>
-src="{{ asset("lte") }}{{ asset('js') }}/bootstrap-datepicker.js"></script>
-src="{{ asset("lte") }}{{ asset('js') }}/main.js"></script>
+<script src="{{ asset('js') }}/vendor/jquery-2.2.4.min.js"></script>
+{{--<script--}}
+{{--    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"--}}
+{{--    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"--}}
+{{--    crossorigin="anonymous"--}}
+{{--></script>--}}
+<script src="{{ asset('js') }}/vendor/bootstrap.min.js"></script>
+<script src="{{ asset('js') }}/owl.carousel.min.js"></script>
+<script src="{{ asset('js') }}/jquery.sticky.js"></script>
+<script src="{{ asset('js') }}/jquery.tabs.min.js"></script>
+<script src="{{ asset('js') }}/parallax.min.js"></script>
+<script src="{{ asset('js') }}/jquery.nice-select.min.js"></script>
+<script src="{{ asset('js') }}/jquery.ajaxchimp.min.js"></script>
+<script src="{{ asset('js') }}/jquery.magnific-popup.min.js"></script>
+{{--<script--}}
+{{--    type="text/javascript"--}}
+{{--    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"--}}
+{{--></script>--}}
+<script src="{{ asset('js') }}/bootstrap-datepicker.js"></script>
+<script src="{{ asset('js') }}/main.js"></script>
 </body>
 </html>
 
