@@ -124,7 +124,7 @@
                                 <input type="text"
                                        disabled
                                        name="published"
-                                       value="{{ $postItem->published_at ? $postItem->published_at->format('Y') : ''}}"
+                                       value="{{ $postItem->published_at ? $postItem->published_at->format('d m y') : ''}}"
                                        id="inputSpentBudget" class="form-control">
                             </div>
                             <div class="form-group">

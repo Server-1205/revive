@@ -41,6 +41,11 @@ class Category extends Model
         return $this->hasMany(self::class,'parent_id','id');
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class,'category_id','id');
+    }
+
     public function parent(): BelongsTo
     {
         return $this->belongsTo(self::class,'parent_id','id');
@@ -54,5 +59,10 @@ class Category extends Model
     public function is_parent(): int
     {
         return $this->parent_id === 0;
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

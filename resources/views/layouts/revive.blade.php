@@ -19,13 +19,10 @@
     <!-- Site Title -->
     <title>Revive</title>
 
-{{--    <link--}}
-{{--        href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Playfair+Display:700,700i"--}}
-{{--        rel="stylesheet"--}}
-{{--    />--}}
-    <!--
-			CSS
-			============================================= -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Playfair+Display:700,700i"
+        rel="stylesheet"
+    />
     <link rel="stylesheet" href="{{asset('css/linearicons.css')}}" />
     <link rel="stylesheet" href="{{ asset('css') }}/font-awesome.min.css" />
     <link rel="stylesheet" href="{{ asset('css') }}/magnific-popup.css" />
@@ -35,6 +32,8 @@
     <link rel="stylesheet" href="{{ asset('css') }}/bootstrap-datepicker.css" />
     <link rel="stylesheet" href="{{ asset('css') }}/themify-icons.css" />
     <link rel="stylesheet" href="{{ asset('css') }}/main.css" />
+{{--    <link rel="stylesheet" href="{{ asset('css') }}/style.css" />--}}
+    <!-- Theme style -->
 </head>
 
 <body>
@@ -46,15 +45,18 @@
                 class="header-top d-flex justify-content-between align-items-lg-center navbar-expand-lg"
             >
                 <div class="col menu-left">
-                    <a class="active" href="index.html">Home</a>
-                    <a href="category.html">Category</a>
-                    <a href="archive.html">Archive</a>
+                    <a class="{{ url()->current() === route('home') ? 'active' : '' }}"
+                       href="{{url()->current() === route('home') ? '#' : route('home')}}">
+                        Home
+                    </a>
+                    <a href="">News</a>
+                    <a href="">About as</a>
                 </div>
                 <div class="col-5 text-lg-center mt-2 mt-lg-0">
               <span class="logo-outer">
                 <span class="logo-inner">
                   <a href="index.html"
-                  ><img class="mx-auto" src="img/logo.png" alt=""
+                  ><img class="mx-auto" src="{{ asset('img/logo.png') }}" alt=""
                       /></a>
                 </span>
               </span>
@@ -79,28 +81,26 @@
                             <li class="nav-item hide-lg">
                                 <a class="nav-link" href="index.html">Home</a>
                             </li>
-                            <li class="nav-item hide-lg">
-                                <a class="nav-link" href="category.html">Category</a>
-                            </li>
+
                             <!-- Dropdown -->
-                            <!-- <li class="nav-item dropdown">
+                             <li class="nav-item dropdown">
                               <a
                                 class="nav-link dropdown-toggle"
                                 href="#"
                                 id="navbardrop"
                                 data-toggle="dropdown"
                               >
-                                Pages
+                                Categories
                               </a>
                               <div class="dropdown-menu">
-                                <a class="dropdown-item" href="elements.html">Elements</a>
+                                  @foreach($categories as $category)
+                                      <a class="dropdown-item" href="{{ url()->current() === route('category', $category) ? '#' : route('category', $category) }}">{{ $category->title }}</a>
+                                  @endforeach
                               </div>
-                            </li> -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="elements.html">Elements</a>
                             </li>
+
                             <li class="nav-item">
-                                <a class="nav-link" href="blog-single.html">Blog Detail</a>
+                                <a class="nav-link" href="contact.html">Contact</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.html">Contact</a>
@@ -199,7 +199,7 @@
 {{--    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"--}}
 {{--    crossorigin="anonymous"--}}
 {{--></script>--}}
-<script src="{{ asset('js') }}/vendor/bootstrap.min.js"></script>
+<script src="{{ asset('js') }}/bootstrap.min.js"></script>
 <script src="{{ asset('js') }}/owl.carousel.min.js"></script>
 <script src="{{ asset('js') }}/jquery.sticky.js"></script>
 <script src="{{ asset('js') }}/jquery.tabs.min.js"></script>
@@ -207,6 +207,8 @@
 <script src="{{ asset('js') }}/jquery.nice-select.min.js"></script>
 <script src="{{ asset('js') }}/jquery.ajaxchimp.min.js"></script>
 <script src="{{ asset('js') }}/jquery.magnific-popup.min.js"></script>
+<script src="{{ asset('lte') }}/dist/js/adminlte.min.js"></script>
+<script src="{{ asset('lte') }}/plugins/popper/popper.js"></script>
 {{--<script--}}
 {{--    type="text/javascript"--}}
 {{--    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"--}}

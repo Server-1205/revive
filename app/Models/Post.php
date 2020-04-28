@@ -62,4 +62,14 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class,'category_id','id');
     }
+
+    public static function getPublishedPosts()
+    {
+        return self::with('categories')->where('is_published',1)->paginate(1);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

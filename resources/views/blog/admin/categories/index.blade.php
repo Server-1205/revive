@@ -95,7 +95,7 @@
                                     {{--                                        </i>--}}
                                     {{--                                        Edit--}}
                                     {{--                                    </a>--}}
-                                    <a class="btn btn-info btn-sm" href="{{ route('admin.categories.edit',$category->id) }}">
+                                    <a class="btn btn-info btn-sm" href="{{ route('admin.categories.edit',$category) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit

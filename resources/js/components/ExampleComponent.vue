@@ -16,8 +16,18 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        data() {
+            return {
+                fileOrder:[],
+                fileFinish: [],
+
+            }
+        },
+
+        methods: {
+            async uploadImage(){}
+
+        },
+
     }
 </script>

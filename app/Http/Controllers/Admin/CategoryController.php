@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('blog.admin.categories.index',compact('categories'));
+        return view('blog.admin.categories.index', compact('categories'));
     }
 
     /**
@@ -29,7 +29,6 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::with('children')->where('parent_id', 0)->get();
-        //dd($categories);
         return view('blog.admin.categories.create', ['categories' => $categories, 'delimiter' => '']);
     }
 
@@ -44,20 +43,20 @@ class CategoryController extends Controller
     {
 
         $data = $request->input();
-        $this->validate($request,[
+        $this->validate($request, [
             'title' => 'string|max:50|unique:categories,title',
-            'slug'  => 'unique:categories,slug|max:40|',
+            'slug' => 'unique:categories,slug|max:40|',
             'description' => 'string'
         ]);
 
 
-        if (empty($data['slug'])){
+        if (empty($data['slug'])) {
             $data['slug'] = Str::slug($data['title']);
         }
 
         $res = Category::create($data);
 
-        if (!$res->exists()){
+        if (!$res->exists()) {
             return redirect()
                 ->back()
                 ->withErrors(['msg' => 'Ошибка сохранения'])
@@ -84,15 +83,14 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param $id
+     * @param Category $category
      * @return View
      */
-    public function edit($id):View
+    public function edit(Category $category): View
     {
         $delimiter = '';
-        $category = Category::findOrFail($id);
         $categories = Category::with('children')->where('parent_id', 0)->get();
-        return view('blog.admin.categories.edit',compact('category','categories','delimiter'));
+        return view('blog.admin.categories.edit', compact('category', 'categories', 'delimiter'));
     }
 
     /**
@@ -107,8 +105,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         $res = $category->update($request->all());
-
-        return redirect()->route('admin.categories.edit',$category);
+        return redirect()->route('admin.categories.edit', $category);
     }
 
     /**
@@ -121,7 +118,7 @@ class CategoryController extends Controller
     public function destroy(Category $category): RedirectResponse
     {
         $res = $category->delete();
-        if($res){
+        if ($res) {
             return back()->with(['success' => "Запись с id {$category->id} удалена"]);
         }
 
