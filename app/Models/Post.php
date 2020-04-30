@@ -65,11 +65,16 @@ class Post extends Model
 
     public static function getPublishedPosts()
     {
-        return self::with('categories')->where('is_published',1)->paginate(1);
+        return self::with('categories')->where('is_published',1)->orderByDesc('id')->paginate(8);
     }
 
-    public function getRouteKeyName()
+//    public function getRouteKeyName()
+//    {
+//        return 'slug';
+//    }
+
+    public function comments()
     {
-        return 'slug';
+        return $this->hasMany(Comment::class);
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <section class="content">
+    <setion class="content">
         <div class="container-fluid">
             <section class="content-header">
                 <div class="container-fluid">
@@ -73,6 +73,6 @@
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->
-    </section>
+    </setion>
 @endsection
 
